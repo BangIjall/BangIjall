@@ -1,0 +1,122 @@
+ 
+#define M1Apin   22
+#define M1Bpin   23
+#define M1Epin   9
+#define EN1A     3
+#define EN1B     11
+
+#define M2Apin   24 
+#define M2Bpin   25
+#define M2Epin   8
+#define EN2A     2
+#define EN2B     10
+
+#define M3Apin   26 
+#define M3Bpin   27
+#define M3Epin   7
+#define EN3A     18
+#define EN3B     14
+
+#define M4Apin   34
+#define M4Bpin   35
+#define M4Epin   4
+#define EN4A     19
+#define EN4B     15
+
+#define buzz     13
+// ++++++++++++++++++++++++++++++++++++++++++++ Definisi Makro / Alias ++++++++++++++++++++++++++++++++++++++++++++
+#define RPM_INTERVAL  10
+#define PID_INTERVAL  10
+
+//======== pin Joystick ======= =//
+#define CH_1_PIN      52 
+#define CH_2_PIN      51 
+#define CH_3_PIN      38 
+
+int beepTick, tH, tL, n,                             //beep
+    deadzone = 38;
+    
+unsigned long pidTick, rpmTick, lastTime;                              //TimerTick
+
+
+struct MOTOR{
+  unsigned int rpm, rpmTick;
+  int lastTick, time;
+  long pos;
+  unsigned int pulse, pidTick;
+  unsigned int wind_up;
+  int setPoint, Err, lastErr;
+  float Kp, Ki, Kd;
+  float I, pid;
+  int pwm;
+  char mode;
+}m1, m2, m3, m4;
+
+void motor_init(void);
+void encoder1(void);
+void encoder2(void);
+void encoder3(void);
+void encoder4(void);
+
+void set_m1_pwm(int speed);
+void set_m2_pwm(int speed);
+void set_m3_pwm(int speed);
+void set_m4_pwm(int speed);
+
+void m1PID(int speed);
+void m2PID(int speed);
+void m3PID(int speed);
+void m4PID(int speed);
+
+void set_m1(int speed);
+void set_m2(int speed);
+void set_m3(int speed);
+void set_m4(int speed);
+
+void setMotor4(int m1, int m2, int m3, int m4);
+void setMotor4PID(int mt1, int mt2, int mt3, int mt4);
+
+void base_Kinematic(int aX, int aY);
+void baca_eeprom(void);
+void bacaJoy(void);
+void joybase_Kinematic(void);
+void play(void);
+
+void setup() {
+  pinMode(buzz,OUTPUT);
+  Serial.begin(9600);
+  motor_init();
+
+  enc_clr();
+  sp_clr();
+  noInterrupts();
+  TCCR5A = 0;
+  TCCR5B = 0;
+
+  TCNT5 = -250;
+  TCCR5B = 0x03;
+  TIMSK5 = 0x01;
+  interrupts();
+
+}
+
+void loop() {
+
+  
+  
+  int y = pulseIn(CH_2_PIN, HIGH, 50000);
+  int x = pulseIn(CH_1_PIN, HIGH, 50000);
+  int x1 = pulseIn(CH_3_PIN, HIGH, 50000);
+
+  y = pulseToPWM(y);
+  x = pulseToPWM(x);
+  base_Kinematic(x,y);
+  
+  base_Kinematic(40,0);
+//set_m1_pwm(-40);
+  
+  Serial.print(m1.setPoint);
+  Serial.print(" ");
+Serial.println(m1.rpm);
+ 
+}

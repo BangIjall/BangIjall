@@ -1,0 +1,73 @@
+
+void PID_motor(){
+
+  /*======================================== BACA RPM =======================================================*/
+  if (++rpmTick > RPM_INTERVAL) {
+    rpmTick = 0;
+    m1.rpm = (float)m1.pulse * 60 * 1000 / RPM_INTERVAL / 135;
+    m1.pulse = 0;
+
+    m2.rpm = (float)m2.pulse * 60 * 1000 / RPM_INTERVAL / 135;
+    m2.pulse = 0;
+
+    m3.rpm = (float)m3.pulse * 60 * 1000 / RPM_INTERVAL / 135;
+    m3.pulse = 0;
+
+    m4.rpm = (float)m4.pulse * 60 * 1000 / RPM_INTERVAL / 135;
+    m4.pulse = 0;
+  }
+  //=========================================================================================================
+   
+  // ========================================== PID =========================================================
+  if (++m12.pidTick == PID_INTERVAL){ //depan
+    m12.pidTick = 0;
+
+    // ===== Motor PID =====
+    m12.Err = m1.rpm - m2.rpm;
+
+    if (abs(m12.I) < m12.wind_up) m12.I += m12.Err;
+    else            m12.I = 0;
+
+    m12.pid = (m12.Kp * m12.Err * 0.1) + (m12.Ki * m12.I * 0.01) + (m12.Kd * (m12.Err - m12.lastErr) * 0.1);
+    m12.lastErr = m12.Err;
+    
+    if         (m12.Err == 0) m1.pwm = m2.pwm;
+    else if    (m12.Err < 0)  m1.pwm = m1.pwm - (int)m12.pid;
+    else if    (m12.Err > 0)  m2.pwm = m2.pwm - (int)m12.pid;
+    
+    if (m1.pwm < 5)     m1.pwm = 5;   // dead zone
+    if (m1.pwm > 255)   m1.pwm = 255;
+    if (m1.setPoint == 0) m1.pwm = 0;
+
+    if (m2.pwm < 5)     m2.pwm = 5;   // dead zone
+    if (m2.pwm > 255)   m2.pwm = 255;
+    if (m2.setPoint == 0) m2.pwm = 0;
+  }
+  
+  if (++m34.pidTick == PID_INTERVAL){ //belakang
+    m34.pidTick = 0;
+
+    // ===== Motor PID =====
+    m34.Err = m3.rpm - m4.rpm;
+
+    if (abs(m34.I) < m34.wind_up) m34.I += m34.Err;
+    else            m34.I = 0;
+
+    m34.pid = (m34.Kp * m34.Err * 0.1) + (m34.Ki * m34.I * 0.01) + (m34.Kd * (m34.Err - m34.lastErr) * 0.1);
+    m34.lastErr = m34.Err;
+    
+    if         (m34.Err == 0) m3.pwm = m4.pwm;
+    else if    (m34.Err < 0)  m3.pwm = m3.pwm - (int)m34.pid;
+    else if    (m34.Err > 0)  m4.pwm = m4.pwm - (int)m34.pid;
+    
+    if (m3.pwm < 5)       m3.pwm = 5;   // dead zone
+    if (m3 .pwm > 255)    m3.pwm = 255;
+    if (m3.setPoint == 0) m3.pwm = 0;
+
+    if (m4.pwm < 5)       m4.pwm = 5;   // dead zone
+    if (m4.pwm > 255)     m4.pwm = 255;
+    if (m4.setPoint == 0) m4.pwm = 0;
+
+  //=============================================================================================
+    }
+}

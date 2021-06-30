@@ -1,0 +1,162 @@
+#include <TimerThree.h>
+#include <Wire.h>
+
+
+#define _i2cAddress 0x60
+
+// CMPS10 compass registers
+#define BEARING_REGISTER  2 
+#define PITCH_REGISTER    4 
+#define ROLL_REGISTER     5
+#define ACCEL_X_REGISTER 16
+#define ACCEL_Y_REGISTER 18
+#define ACCEL_Z_REGISTER 20
+#define CONTROL_REGISTER 22
+
+#define _ONE_BYTE      1
+#define _TWO_BYTES     2
+#define _SIX_BYTES     6
+#define I2C_TIMEOUT 1000
+    
+//-------------------------------
+
+#define M1Apin   22
+#define M1Bpin   23
+#define M1Epin   9
+#define EN1A     3
+#define EN1B     11
+
+#define M2Apin   24 
+#define M2Bpin   25
+#define M2Epin   8
+#define EN2A     2
+#define EN2B     10
+
+#define M3Apin   26 
+#define M3Bpin   27
+#define M3Epin   7
+#define EN3A     18
+#define EN3B     14
+
+#define M4Apin   34
+#define M4Bpin   35
+#define M4Epin   4
+#define EN4A     19
+#define EN4B     15
+
+#define buzz     13
+// ++++++++++++++++++++++++++++++++++++++++++++ Definisi Makro / Alias ++++++++++++++++++++++++++++++++++++++++++++
+#define rps_INTERVAL  20
+#define PID_INTERVAL  20
+#define phi 3.141593
+#define d_roda 10
+//======== pin Joystick ======= =//
+#define CH_1_PIN      52
+#define CH_2_PIN      51 
+#define CH_3_PIN      38 
+#define CH_4_PIN      53
+
+byte _byteLow, _byteHigh;;
+int _bearing, Ex, Exx, deadzone = 38;    
+unsigned long pidTick, rpsTick, lastTime;                              //TimerTick
+
+
+struct MOTOR{
+  unsigned int rps, rpsTick;
+  int lastTick, time;
+  long pos;
+  unsigned int pulse;
+  int setPoint;
+  int pwm;
+  char mode;
+  float v; 
+}m1, m2, m3, m4;
+
+struct PID{
+  int Err, lastErr;
+  float Kp, Ki, Kd;
+  float I, pid;
+  unsigned int pidTick, wind_up;
+} m12, m34, m13, m24;
+
+void motor_init(void);
+void encoder1(void);
+void encoder2(void);
+void encoder3(void);
+void encoder4(void);
+
+void set_m1_pwm(int speed);
+void set_m2_pwm(int speed);
+void set_m3_pwm(int speed);
+void set_m4_pwm(int speed);
+
+void m1PID(int speed);
+void m2PID(int speed);
+void m3PID(int speed);
+void m4PID(int speed);
+
+void setMotor4PID(int mt1, int mt2, int mt3, int mt4);
+
+void base_Kinematic(int aX, int aY, int aZ);
+void sp_clr(void);
+void enc_clr(void);
+void getBearing(void);
+void setup() {
+  pinMode(buzz,OUTPUT);
+  Serial.begin(9600);
+  motor_init();
+//  sp_clr();
+//  enc_clr();
+  Timer3.initialize(1000);
+  Timer3.attachInterrupt(INT_PID); // blinkLED to run every 0.15 seconds
+
+  Wire.begin();
+}
+
+void loop() {
+  
+  noInterrupts();  
+  int y = pulseIn(CH_2_PIN, HIGH, 50000);
+  int x = pulseIn(CH_1_PIN, HIGH, 50000);
+  int x1 = pulseIn(CH_3_PIN, HIGH, 50000);
+  int z  = pulseIn(CH_4_PIN, HIGH, 50000);
+  interrupts();
+
+   bearing = getBearing();
+  Ex = bearing;
+  Exx = bearing - Ex;
+  y = pulseToPWM(y);
+  x = pulseToPWM(x);
+  z = pulseToPWM(z);
+  
+  base_Kinematic(x,y,z);
+  
+//  Serial.print(x);
+//  Serial.print(" ");
+//  Serial.print(y);
+//  Serial.print(" ");
+//  Serial.print(Exx);
+//  Serial.print(" ");
+  Serial.println(bearing);
+
+}
+int pulseToPWM (int pulse) {
+  
+  if ( pulse > 1000 ) {
+    pulse = map(pulse, 1000, 2000, -380, 380);
+    pulse = constrain(pulse, -255, 255);
+  } else {
+    pulse = 0;
+  }
+
+  // Anything in deadzone should stop the motor
+  if ( abs(pulse) <= deadzone ) {
+    pulse = 0;
+  }
+
+  return pulse;
+}
+
+void INT_PID(){
+  PID_motor();
+}
