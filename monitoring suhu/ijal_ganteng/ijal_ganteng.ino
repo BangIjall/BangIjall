@@ -38,7 +38,7 @@ void setup() {
 void loop() {
   temperature();
   stat = call.CallStatusWithAuth(number, 0, 0);
-  if (stat == CALL_INCOM_VOICE_AUTH)
+  if (stat == CALL_INCOM_VOICE_AUTH || suhu >= 100)
   {
     call.HangUp();
     delay(2000);

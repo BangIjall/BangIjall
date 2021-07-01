@@ -1,18 +1,22 @@
-  #include <Servo.h>
+#include <Servo.h>
+
 Servo ServoCapit;
 Servo ServoSikut;
 Servo ServoLengan;
-int PinSensor = A0; // Sensor (LDR) pada Pin Nomor A0
-int PinLedMerah =3; // Led Warna Merah pada Pin Nomor 3
-int PinLedHijau=4; // Led Warna Hijau pada Pin Nomor 4
-int PinLedBiru=5; // Led Warna Biru pada Pin Nomor 5
-int PinKonveyor=8; // Relay pada Pin Nomor 8
+
+int IR           = 7;
+int PinSensor    = A0; // Sensor (LDR) pada Pin Nomor A0
+int PinLedMerah  = 3; // Led Warna Merah pada Pin Nomor 3
+int PinLedHijau  = 4; // Led Warna Hijau pada Pin Nomor 4
+int PinLedBiru   = 5; // Led Warna Biru pada Pin Nomor 5
+int PinKonveyor  = 8; // Relay pada Pin Nomor 8
+
 int Hasil,HasilMerah,HasilHijau,HasilBiru,sensorState;
 int k=3;  // Toleransi Warna
 
 void setup() {
-// Menetapkan Pin Led Merah, Hijau, Biru sebagai OUTPUT:
-  pinMode(PinLedMerah,OUTPUT);
+  pinMode(PinSensor,INPUT);
+  pinMode(IR,INPUT);
   pinMode(PinLedHijau,OUTPUT);
   pinMode(PinLedBiru,OUTPUT); 
   pinMode(PinKonveyor,OUTPUT);
@@ -66,12 +70,9 @@ void loop() {
   if(abs(HasilMerah-245)<k && abs(HasilHijau-235)<k && abs(HasilBiru-233)<k){
     Serial.println("WARNA MERAH\n");
 
-    digitalWrite(PinKonveyor,HIGH);
-    delay(1500);    
+    jalan();    
     ServoCapit.write(45); // Capit membuka
     delay(1000);
-    digitalWrite(PinKonveyor, LOW);
-    delay(500);    
     ServoSikut.write(40); // Sikut menurunkan capit menuju benda
     delay(1000);
     ServoCapit.write(15); // Capit menutup
@@ -94,12 +95,9 @@ void loop() {
    if(abs(HasilMerah-241)<k && abs(HasilHijau-243)<k && abs(HasilBiru-241)<k){
     Serial.println("WARNA BIRU\n");
 
-    digitalWrite(PinKonveyor,HIGH);
-    delay(1500);
+    jalan();
     ServoCapit.write(45); // Capit membuka
     delay(1000);
-    digitalWrite(PinKonveyor, LOW);
-    delay(500);    
     ServoSikut.write(40); // Sikut menurunkan capit menuju benda
     delay(1000);
     ServoCapit.write(15); // Capit menutup
@@ -123,12 +121,9 @@ void loop() {
  if(abs(HasilMerah-238)<k && abs(HasilHijau-241)<k && abs(HasilBiru-238)<k){
     Serial.println("WARNA HIJAU\n");
 
-    digitalWrite(PinKonveyor,HIGH);
-    delay(1500);    
+    jalan();
     ServoCapit.write(45); // Capit membuka
     delay(1000);
-    digitalWrite(PinKonveyor, LOW);
-    delay(500);    
     ServoSikut.write(40 ); // Sikut menurunkan capit menuju benda
     delay(1000);
     ServoCapit.write(15); // Capit menutup
@@ -151,4 +146,14 @@ void loop() {
     Serial.println("Warna Tidak Dikenal\n");    
    
   delay (2000);
+}
+
+void jalan() {
+  digitalWrite(PinKonveyor,HIGH);    
+  while(1) {
+    if((digitalRead(IR)) == LOW) {
+      digitalWrite(PinKonveyor,LOW);
+      break;
+    }
+  }
 }
