@@ -1,4 +1,4 @@
-- Hi, I’m @BangIjall 👋
+- Hi, I’m Muhammad Rayhan Rizaldi 👋
 - I’m interested in robotic
 - If u like my projects and want to collaborate with me, u can visit my contacts
 - Whatsapp : 082124256955
