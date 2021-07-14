@@ -1,11 +1,12 @@
 #include <AccelStepper.h>
-#include <Servo.h>
+//#include <Servo.h>
 #include <math.h>
 
 #define limitSwitch1 11
 #define limitSwitch2 10
 #define limitSwitch3 9
 #define limitSwitch4 A3
+#define vacuum A0
 
 // Define the stepper motors and the pins the will use
 AccelStepper stepper1(1, 2, 5); // (Type:driver, STEP, DIR)
@@ -13,7 +14,7 @@ AccelStepper stepper2(1, 3, 6);
 AccelStepper stepper3(1, 4, 7);
 AccelStepper stepper4(1, 12, 13);
 
-Servo gripperServo;  // create servo object to control a servo
+//Servo gripperServo;  // create servo object to control a servo
 
 
 double x = 10.0;
@@ -60,10 +61,12 @@ void setup() {
   stepper4.setMaxSpeed(4000);
   stepper4.setAcceleration(2000);
 
-  gripperServo.attach(A0, 600, 2500);
+  //gripperServo.attach(A0, 600, 2500);
+  pinMode(vacuum, OUTPUT);
   // initial servo value - open gripper
-  data[6] = 180;
-  gripperServo.write(data[6]);
+  data[6] = HIGH;
+  //gripperServo.write(data[6]);
+  digitalWrite(vacuum, data[6]);
   delay(1000);
   data[5] = 100;
   homing();
@@ -137,10 +140,12 @@ void loop() {
         stepper4.run();
       }
       if (i == 0) {
-        gripperServo.write(gripperArray[i]);
+        digitalWrite(vacuum, gripperArray[i]);
+        //gripperServo.write(gripperArray[i]);
       }
       else if (gripperArray[i] != gripperArray[i - 1]) {
-        gripperServo.write(gripperArray[i]);
+        digitalWrite(vacuum, gripperArray[i]);
+        //gripperServo.write(gripperArray[i]);
         delay(800); // wait 0.8s for the servo to grab or drop - the servo is slow
       }
 
@@ -229,7 +234,8 @@ void loop() {
     stepper4.run();
   }
   delay(100);
-  gripperServo.write(data[6]);
+  //gripperServo.write(data[6]);
+  digitalWrite(vacuum, data[6]);
   delay(300);
 }
 

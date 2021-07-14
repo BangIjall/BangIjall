@@ -45,7 +45,7 @@ String data;
 void setup() {
 
   size(960, 800);
-  //myPort = new Serial(this, "COM3", 115200);
+  myPort = new Serial(this, "COM15", 115200);
   
   cp5 = new ControlP5(this);
 
@@ -232,7 +232,7 @@ void setup() {
     ;
 
   cp5.addButton("clearSteps")
-    .setPosition(490, 600)
+    .setPosition(760, 600)
     .setSize(135, 40)
     .setFont(font)
     .setCaptionLabel("(CLEAR)")
@@ -525,9 +525,9 @@ public void zJogPlus() {
 void vacuum(boolean theValue) {
   println("got an event for icon", theValue);
   if (theValue == true) {
-    vacuumStatus = 1;
-  } else if (theValue == false) {
     vacuumStatus = 0;
+  } else if (theValue == false) {
+    vacuumStatus = 1;
   }
   updateData();
   myPort.write(data);
