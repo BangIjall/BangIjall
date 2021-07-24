@@ -523,12 +523,12 @@ public void zJogPlus() {
 }
 
 void vacuum(boolean theValue) {
-  println("got an event for icon", theValue);
   if (theValue == true) {
     vacuumStatus = 0;
   } else if (theValue == false) {
     vacuumStatus = 1;
   }
+  println("vacuumStatus", vacuumStatus);
   updateData();
   myPort.write(data);
 } 

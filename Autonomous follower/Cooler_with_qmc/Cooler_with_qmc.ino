@@ -2,8 +2,7 @@
 
 // Imports
 #include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_HMC5883_U.h>
+#include <QMC5883LCompass.h>
 #include <Servo.h>
 #include <SoftwareSerial.h>
 #include <BlynkSimpleSerialBLE.h>
@@ -29,7 +28,7 @@ SoftwareSerial nss(GPS_TX_PIN, 3);            // TXD to digital pin 6
 #define BLYNK_PRINT Serial
 
 /* Compass */
-Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
+QMC5883LCompass compass;
 
 GeoLoc checkGPS() {
   Serial.println("Reading onboard GPS: ");
@@ -39,7 +38,7 @@ GeoLoc checkGPS() {
     if (feedgps())
       newdata = true;
   }
-  if (newdata) {
+  if (newdata) {  
     return gpsdump(gps);
   }
 
@@ -152,22 +151,6 @@ BLYNK_WRITE(V3) {
   } while (colonIndex != -1);
 }
 
-void displayCompassDetails(void)
-{
-  sensor_t sensor;
-  mag.getSensor(&sensor);
-  Serial.println("------------------------------------");
-  Serial.print  ("Sensor:       "); Serial.println(sensor.name);
-  Serial.print  ("Driver Ver:   "); Serial.println(sensor.version);
-  Serial.print  ("Unique ID:    "); Serial.println(sensor.sensor_id);
-  Serial.print  ("Max Value:    "); Serial.print(sensor.max_value); Serial.println(" uT");
-  Serial.print  ("Min Value:    "); Serial.print(sensor.min_value); Serial.println(" uT");
-  Serial.print  ("Resolution:   "); Serial.print(sensor.resolution); Serial.println(" uT");  
-  Serial.println("------------------------------------");
-  Serial.println("");
-  delay(500);
-}
-
 #ifndef DEGTORAD
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -193,17 +176,24 @@ float geoDistance(struct GeoLoc &a, struct GeoLoc &b) {
 }
 
 float geoHeading() {
-  /* Get a new sensor event */ 
-  sensors_event_t event; 
-  mag.getEvent(&event);
+  int x, y, z;
+  
+  // Read compass values
+  compass.read();
 
-  // Hold the module so that Z is pointing 'up' and you can measure the heading with x&y
-  // Calculate heading when the magnetometer is level, then correct for signs of axis.
-  float heading = atan2(event.magnetic.y, event.magnetic.x);
-
-  // Offset
-  heading -= DECLINATION_ANGLE;
-  heading -= COMPASS_OFFSET;
+  // Return XYZ readings
+  x = compass.getX();
+  y = compass.getY();
+  z = compass.getZ();
+  
+  float heading = atan2(y, x);
+  
+  // Once you have your heading, you must then add your 'Declination Angle', which is the 'Error' of the magnetic field in your location.
+  // Find yours here: http://www.magnetic-declination.com/
+  // Mine is: -13* 2' W, which is ~13 Degrees, or (which we need) 0.22 radians
+  // If you cannot find your Declination, comment out these two lines, your compass will be slightly off.
+  float declinationAngle = 0.22;
+  heading += declinationAngle;
   
   // Correct for when signs are reversed.
   if(heading < 0)
@@ -214,7 +204,7 @@ float geoHeading() {
     heading -= 2*PI;
    
   // Convert radians to degrees for readability.
-  float headingDegrees = heading * 180/M_PI; 
+  float headingDegrees = heading * 180/M_PI;  
 
   // Map to -180 - 180
   while (headingDegrees < -180) headingDegrees += 360;
@@ -341,23 +331,10 @@ void driveTo(struct GeoLoc &loc, int timeout) {
   }
 }
 
-void setupCompass() {
-   /* Initialise the compass */
-  if(!mag.begin())
-  {
-    /* There was a problem detecting the HMC5883 ... check your connections */
-    Serial.println("Ooops, no HMC5883 detected ... Check your wiring!");
-    while(1);
-  }
-  
-  /* Display some basic information on this sensor */
-  displayCompassDetails();
-}
-
 void setup()
 {
   // Compass
-  setupCompass();
+  compass.init();
 
   // Motor pins
   pinMode(MOTOR_A_EN_PIN, OUTPUT);

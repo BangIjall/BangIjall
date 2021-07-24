@@ -1,4 +1,6 @@
 #include <AccelStepper.h>
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
 #include <math.h>
 
 #define limitSwitch1 11
@@ -12,6 +14,9 @@ AccelStepper stepper1(1, 2, 5); // (Type:driver, STEP, DIR)
 AccelStepper stepper2(1, 3, 6);
 AccelStepper stepper3(1, 4, 7);
 AccelStepper stepper4(1, 12, 13);
+
+// LCD
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 double x = 10.0;
 double y = 10.0;
@@ -42,6 +47,10 @@ int positionsCounter = 0;
 void setup() {
   Serial.begin(115200);
 
+  lcd.begin();
+  lcd.backlight();
+  lcd.print(" Starting Device");
+
   pinMode(limitSwitch1, INPUT_PULLUP);
   pinMode(limitSwitch2, INPUT_PULLUP);
   pinMode(limitSwitch3, INPUT_PULLUP);
@@ -66,6 +75,8 @@ void setup() {
   delay(1000);
   data[5] = 100;
   homing();
+  lcd.print("     Ready!     ");
+  delay(2000);
 }
 
 void loop() {
@@ -169,6 +180,38 @@ void loop() {
         stepper4.setAcceleration(data[8]);
       }
     }
+    /*
+      // execute the stored steps in reverse
+      for (int i = positionsCounter - 2; i >= 0; i--) {
+      if (data[1] == 0) {
+        break;
+      }
+      stepper1.moveTo(theta1Array[i]);
+      stepper2.moveTo(theta2Array[i]);
+      stepper3.moveTo(phiArray[i]);
+      stepper4.moveTo(zArray[i]);
+      while (stepper1.currentPosition() != theta1Array[i] || stepper2.currentPosition() != theta2Array[i] || stepper3.currentPosition() != phiArray[i] || stepper4.currentPosition() != zArray[i]) {
+        stepper1.run();
+        stepper2.run();
+        stepper3.run();
+        stepper4.run();
+      }
+      gripperServo.write(gripperArray[i]);
+
+      if (Serial.available()) {
+        content = Serial.readString(); // Read the incomding data from Processing
+        // Extract the data from the string and put into separate integer variables (data[] array)
+        for (int i = 0; i < 10; i++) {
+          int index = content.indexOf(","); // locate the first ","
+          data[i] = atol(content.substring(0, index).c_str()); //Extract the number from start to the ","
+          content = content.substring(index + 1); //Remove the number from the string
+        }
+        if (data[1] == 0) {
+          break;
+        }
+      }
+      }
+    */
   }
 
   stepper1Position = data[2] * theta1AngleToSteps;
