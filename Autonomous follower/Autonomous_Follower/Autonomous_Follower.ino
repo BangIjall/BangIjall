@@ -1,6 +1,5 @@
 #define BLYNK_USE_DIRECT_CONNECT
 
-// Imports
 #include <Wire.h>
 #include <QMC5883LCompass.h>
 #include <SoftwareSerial.h>
@@ -20,11 +19,10 @@ WidgetTerminal terminal(V3);
 SoftwareSerial bluetoothSerial(BLUETOOTH_TX_PIN, BLUETOOTH_RX_PIN);
 SoftwareSerial ss(TXPin, RXPin);
 
-//#define BLYNK_PRINT Serial
-
 /* Compass */
 QMC5883LCompass compass;
 
+// Struktur GPS nya robot
 GeoLoc checkGPS() {
   bool newdata = false;
   unsigned long start = millis();
@@ -43,7 +41,6 @@ GeoLoc checkGPS() {
   return coolerLoc;
 }
 
-// Get and process GPS data
 GeoLoc gpsdump() {
   terminal.println("Reading onboard GPS: ");
   terminal.print("Latitude robot= ");
@@ -60,7 +57,6 @@ GeoLoc gpsdump() {
   return coolerLoc;
 }
 
-// Feed data as it becomes available
 bool feedgps() {
   while (ss.available() > 0){
     gps.encode(ss.read());
@@ -70,7 +66,7 @@ bool feedgps() {
   return false;
 }
 
-// Killswitch Hook
+// tombol On off 
 BLYNK_WRITE(V1) {
   enabled = !enabled;
 
@@ -83,7 +79,7 @@ BLYNK_WRITE(V1) {
   terminal.flush();
 }
 
-// GPS Streaming Hook
+// struktur GPS nya HP
 BLYNK_WRITE(V2) {
   GpsParam gps(param);
 
@@ -102,6 +98,8 @@ BLYNK_WRITE(V2) {
   driveTo(phoneLoc, GPS_STREAM_TIMEOUT);
 }
 
+
+// Kinematik fixxx
 #ifndef DEGTORAD
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -129,69 +127,52 @@ float geoDistance(struct GeoLoc &a, struct GeoLoc &b) {
 float geoHeading() {
   int x, y, z;
 
-  // Read compass values
   compass.read();
 
-  // Return XYZ readings
   x = compass.getX();
   y = compass.getY();
   z = compass.getZ();
 
   float heading = atan2(y, x);
 
-  // Once you have your heading, you must then add your 'Declination Angle', which is the 'Error' of the magnetic field in your location.
-  // Find yours here: http://www.magnetic-declination.com/
-  // Mine is: -13* 2' W, which is ~13 Degrees, or (which we need) 0.22 radians
-  // If you cannot find your Declination, comment out these two lines, your compass will be slightly off.
   float declinationAngle = 0.22;
   heading += declinationAngle;
 
-  // Correct for when signs are reversed.
   if (heading < 0)
     heading += 2 * PI;
 
-  // Check for wrap due to addition of declination.
   if (heading > 2 * PI)
     heading -= 2 * PI;
 
-  // Convert radians to degrees for readability.
   float headingDegrees = heading * 180 / M_PI;
 
-  // Map to -180 - 180
   while (headingDegrees < -180) headingDegrees += 360;
   while (headingDegrees >  180) headingDegrees -= 360;
 
   return headingDegrees;
 }
 
+
+//Sub program per motor an
 void setSpeedMotorA(int speed) {
   digitalWrite(MOTOR_A_IN_1_PIN, LOW);
   digitalWrite(MOTOR_A_IN_2_PIN, HIGH);
-
-  // set speed to 200 out of possible range 0~255
   analogWrite(MOTOR_A_EN_PIN, speed + MOTOR_A_OFFSET);
 }
 
 void setSpeedMotorB(int speed) {
   digitalWrite(MOTOR_B_IN_1_PIN, LOW);
   digitalWrite(MOTOR_B_IN_2_PIN, HIGH);
-
-  // set speed to 200 out of possible range 0~255
   analogWrite(MOTOR_B_EN_PIN, speed + MOTOR_B_OFFSET);
 }
 
 void setSpeed(int speed)
 {
-  // this function will run the motors in both directions at a fixed speed
-  // turn on motor A
   setSpeedMotorA(speed);
-
-  // turn on motor B
   setSpeedMotorB(speed);
 }
 
 void stop() {
-  // now turn off motors
   digitalWrite(MOTOR_A_IN_1_PIN, LOW);
   digitalWrite(MOTOR_A_IN_2_PIN, LOW);
   digitalWrite(MOTOR_B_IN_1_PIN, LOW);
@@ -202,7 +183,6 @@ void drive(int distance, float turn) {
   int fullSpeed = 230;
   int stopSpeed = 0;
 
-  // drive to location
   int s = fullSpeed;
   if ( distance < 8 ) {
     int wouldBeSpeed = s - stopSpeed;
@@ -288,7 +268,7 @@ void setup()
   // Compass
   compass.init();
 
-  // Motor pins
+  // Pin Motor
   pinMode(MOTOR_A_EN_PIN, OUTPUT);
   pinMode(MOTOR_B_EN_PIN, OUTPUT);
   pinMode(MOTOR_A_IN_1_PIN, OUTPUT);
