@@ -1,6 +1,5 @@
-#include <PS2X_lib.h>  //for v1.6
+#include <PS2X_lib.h>
 
-// These are used to set the direction of the bridge driver.
 #define ENA 3      //ENA
 #define MOTORA_1 4 //IN3
 #define MOTORA_2 5 //IN4
@@ -11,18 +10,14 @@
 int motor_right_speed = 0;
 int motor_left_speed = 0;
 
-PS2X ps2x; // create PS2 Controller Class
+PS2X ps2x; 
 
-//right now, the library does NOT support hot pluggable controllers, meaning 
-//you must always either restart your Arduino after you conect the controller, 
-//or call config_gamepad(pins) again after connecting the controller.
 int error = 0; 
 byte type = 0;
 byte vibrate = 0;
 
 void setup(){
 
- // Configure output pins
  pinMode(ENA, OUTPUT);
  pinMode(MOTORA_1, OUTPUT);
  pinMode(MOTORA_2, OUTPUT);
@@ -30,16 +25,13 @@ void setup(){
  pinMode(MOTORB_1, OUTPUT);
  pinMode(MOTORB_2, OUTPUT);
 
- // Disable both motors
  digitalWrite(ENA,0);
  digitalWrite(ENB,0);
  
- // Start serial communication
  Serial.begin(57600);
   
- error = ps2x.config_gamepad(13,11,10,12, true, true);   //setup pins and settings:  GamePad(clock, command, attention, data, Pressures?, Rumble?) check for error
- 
- // Check for error
+ error = ps2x.config_gamepad(13,11,10,12, true, true);   
+  
  if(error == 0){
   Serial.println("Found Controller, configured successful");
  }
@@ -68,42 +60,32 @@ void setup(){
   }
 }
 
-// Main loop
 void loop(){
    
- if(error == 1) //skip loop if no controller found
+ if(error == 1) 
   return; 
   
- else { //DualShock Controller
+ else { 
   
-    ps2x.read_gamepad(false, vibrate); // disable vibration of the controller   
+    ps2x.read_gamepad(false, vibrate); 
     
-    int nJoyX = ps2x.Analog(PSS_LX); // read x-joystick
-    int nJoyY = ps2x.Analog(PSS_LY); // read y-joystick
+    int nJoyX = ps2x.Analog(PSS_LX); 
+    int nJoyY = ps2x.Analog(PSS_LY); 
     
   
     nJoyX = map(nJoyX, 0, 255, -1023, 1023);
     nJoyY = map(nJoyY, 0, 255, 1023, -1023);
   
-    // OUTPUTS
-    int nMotMixL; // Motor (left) mixed output
-    int nMotMixR; // Motor (right) mixed output
+    int nMotMixL; 
+    int nMotMixR; 
   
-    // CONFIG
-    // - fPivYLimt  : The threshold at which the pivot action starts
-    //                This threshold is measured in units on the Y-axis
-    //                away from the X-axis (Y=0). A greater value will assign
-    //                more of the joystick's range to pivot actions.
-    //                Allowable range: (0..+127)
     float fPivYLimit = 1023.0;
         
-    // TEMP VARIABLES
-    float   nMotPremixL;    // Motor (left) premixed output
-    float   nMotPremixR;    // Motor (right) premixed output
-    int     nPivSpeed;      // Pivot Speed
-    float   fPivScale;      // Balance scale between drive and pivot
+    float   nMotPremixL;    
+    float   nMotPremixR;    
+    int     nPivSpeed;      
+    float   fPivScale;      
   
-    // Calculate Drive Turn output due to Joystick X input
     if (nJoyY >= 0) {
       // Forward
       nMotPremixL = (nJoyX>=0)? 1023.0 : (1023.0 + nJoyX);
@@ -114,17 +96,12 @@ void loop(){
       nMotPremixR = (nJoyX>=0)? 1023.0 : (1023.0 + nJoyX);
     }
   
-    // Scale Drive output due to Joystick Y input (throttle)
     nMotPremixL = nMotPremixL * nJoyY/1023.0;
     nMotPremixR = nMotPremixR * nJoyY/1023.0;
   
-    // Now calculate pivot amount
-    // - Strength of pivot (nPivSpeed) based on Joystick X input
-    // - Blending of pivot vs drive (fPivScale) based on Joystick Y input
     nPivSpeed = nJoyX;
     fPivScale = (abs(nJoyY)>fPivYLimit)? 0.0 : (1.0 - abs(nJoyY)/fPivYLimit);
   
-    // Calculate final mix of Drive and Pivot
     nMotMixL = (1.0-fPivScale)*nMotPremixL + fPivScale*( nPivSpeed);
     nMotMixR = (1.0-fPivScale)*nMotPremixR + fPivScale*(-nPivSpeed);
     
