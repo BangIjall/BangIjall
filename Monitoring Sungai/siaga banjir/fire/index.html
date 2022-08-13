@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="level"></p>
+    <p id="status"></p>
+  
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <script>
+    // TODO: Replace with your app's Firebase project configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD_C-6IpuktYTCnINaGZSFwJNC7ZM3V8O0",
+      authDomain: "tasiagabanjir.firebaseapp.com",
+      // The value of `databaseURL` depends on the location of the database
+      databaseURL: "https://tasiagabanjir-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "tasiagabanjir",
+      storageBucket: "tasiagabanjir.appspot.com",
+      messagingSenderId: "238856181326",
+      appId: "1:238856181326:web:938978b632b356a00a951f",
+      // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+      measurementId: "G-6TR03QGTVE",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    var slevel = document.getElementById("level");
+    var sstatus = document.getElementById("status")
+
+
+    var firebaseReflevel = firebase.database().ref("data").child("level");
+    firebaseReflevel.on('value', function (snapshot) { 
+      slevel.innerText = snapshot.val();
+    })
+
+    var firebaseRefstatus = firebase.database().ref("data").child("status");
+    firebaseRefstatus.on('value', function (snapshot) { 
+      sstatus.innerText = snapshot.val();
+    })
+
+  </script>
+</body>
+</html>

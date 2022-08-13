@@ -675,53 +675,6 @@ Comments, suggestions and bug reports please send to: &lt;b&gt;&lt;a href="mailt
 <wire x1="-19.685" y1="6.985" x2="-19.685" y2="5.715" width="0.254" layer="21"/>
 <wire x1="-20.32" y1="6.35" x2="-19.05" y2="6.35" width="0.254" layer="21"/>
 </package>
-<package name="CURRENT-SENSOR-ACS712#IC">
-<description>&lt;b&gt;Isolated Bipolar Current Sensors&lt;/b&gt; based on &lt;b&gt;ACS712&lt;/b&gt; chip&lt;br&gt;
-Footprint with input connector</description>
-<wire x1="-15.748" y1="6.604" x2="15.748" y2="6.604" width="0.127" layer="21"/>
-<wire x1="15.748" y1="6.604" x2="15.748" y2="-6.604" width="0.127" layer="21"/>
-<wire x1="15.748" y1="-6.604" x2="-15.748" y2="-6.604" width="0.127" layer="21"/>
-<wire x1="-15.748" y1="-6.604" x2="-15.748" y2="6.604" width="0.127" layer="21"/>
-<pad name="1" x="13.97" y="2.54" drill="1" shape="square"/>
-<pad name="2" x="13.97" y="0" drill="1"/>
-<pad name="3" x="13.97" y="-2.54" drill="1"/>
-<wire x1="12.7" y1="3.175" x2="13.335" y2="3.81" width="0.127" layer="21"/>
-<wire x1="13.335" y1="3.81" x2="14.605" y2="3.81" width="0.127" layer="21"/>
-<wire x1="14.605" y1="3.81" x2="15.24" y2="3.175" width="0.127" layer="21"/>
-<wire x1="15.24" y1="3.175" x2="15.24" y2="1.905" width="0.127" layer="21"/>
-<wire x1="15.24" y1="1.905" x2="14.605" y2="1.27" width="0.127" layer="21"/>
-<wire x1="14.605" y1="1.27" x2="15.24" y2="0.635" width="0.127" layer="21"/>
-<wire x1="15.24" y1="0.635" x2="15.24" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="15.24" y1="-0.635" x2="14.605" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="14.605" y1="-1.27" x2="15.24" y2="-1.905" width="0.127" layer="21"/>
-<wire x1="15.24" y1="-1.905" x2="15.24" y2="-3.175" width="0.127" layer="21"/>
-<wire x1="15.24" y1="-3.175" x2="14.605" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="14.605" y1="-3.81" x2="13.335" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="13.335" y1="-3.81" x2="12.7" y2="-3.175" width="0.127" layer="21"/>
-<wire x1="12.7" y1="-3.175" x2="12.7" y2="-1.905" width="0.127" layer="21"/>
-<wire x1="12.7" y1="-1.905" x2="13.335" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="13.335" y1="-1.27" x2="12.7" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="12.7" y1="-0.635" x2="12.7" y2="0.635" width="0.127" layer="21"/>
-<wire x1="12.7" y1="0.635" x2="13.335" y2="1.27" width="0.127" layer="21"/>
-<wire x1="13.335" y1="1.27" x2="12.7" y2="1.905" width="0.127" layer="21"/>
-<wire x1="12.7" y1="1.905" x2="12.7" y2="3.175" width="0.127" layer="21"/>
-<wire x1="-14.605" y1="5.08" x2="-8.255" y2="5.08" width="0.127" layer="21"/>
-<wire x1="-8.255" y1="5.08" x2="-6.985" y2="5.08" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="5.08" x2="-6.985" y2="0" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="0" x2="-6.985" y2="-5.08" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="-5.08" x2="-8.255" y2="-5.08" width="0.127" layer="21"/>
-<wire x1="-8.255" y1="-5.08" x2="-14.605" y2="-5.08" width="0.127" layer="21"/>
-<wire x1="-14.605" y1="-5.08" x2="-14.605" y2="0" width="0.127" layer="21"/>
-<pad name="P1.1" x="-11.43" y="2.54" drill="1.2" diameter="2.5" shape="square"/>
-<pad name="P1.2" x="-11.43" y="-2.54" drill="1.2" diameter="2.5"/>
-<wire x1="-14.605" y1="0" x2="-14.605" y2="5.08" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="0" x2="-14.605" y2="0" width="0.127" layer="21"/>
-<wire x1="-8.255" y1="5.08" x2="-8.255" y2="-5.08" width="0.127" layer="21"/>
-<circle x="-7.62" y="2.54" radius="0.381" width="0.127" layer="21"/>
-<circle x="-7.62" y="-2.54" radius="0.381" width="0.127" layer="21"/>
-<text x="0" y="7.62" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-7.62" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
-</package>
 </packages>
 </library>
 </libraries>
@@ -919,9 +872,9 @@ design rules under a new name.</description>
 <element name="SOLAR_CELL" library="con-JST EH" package="B2B-EH-A" value="B2B-EH-A" x="-73.66" y="92.71"/>
 <element name="SUPPLY" library="con-JST EH" package="B2B-EH-A" value="B2B-EH-A" x="-35.56" y="110.49"/>
 <element name="SWITCH" library="con-JST EH" package="B2B-EH-A" value="B2B-EH-A" x="-21.59" y="110.49"/>
-<element name="U$1" library="nodemcu(1)" package="NODEMCU" value="NODEMCU" x="-29.21" y="31.75"/>
+<element name="U$1" library="nodemcu(1)" package="NODEMCU" value="NODEMCU" x="-34.29" y="29.21"/>
 <element name="U$2" library="diy-modules" package="DC-DC-STEP-DOWN-LM2596" value="DC-DC-STEP-DOWN-LM2596" x="-35.56" y="74.93"/>
-<element name="U$3" library="diy-modules" package="CURRENT-SENSOR-ACS712#IC" value="CURRENT-SENSOR-ACS712#IC" x="-29.21" y="97.79"/>
+<element name="PHOTOVOLTAIC" library="con-JST EH" package="B6B-EH-A" value="B6B-EH-A" x="-68.58" y="-7.62"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -929,21 +882,16 @@ design rules under a new name.</description>
 <contactref element="U$1" pad="14"/>
 <contactref element="U$1" pad="17"/>
 <contactref element="U$1" pad="24"/>
-<wire x1="-15.24" y1="16.51" x2="-43.18" y2="16.51" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.24" y1="34.29" x2="-15.24" y2="16.51" width="0" layer="19" extent="1-1"/>
-<wire x1="-43.18" y1="46.99" x2="-43.18" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="-20.32" y1="13.97" x2="-48.26" y2="13.97" width="0" layer="19" extent="1-1"/>
+<wire x1="-20.32" y1="31.75" x2="-20.32" y2="13.97" width="0" layer="19" extent="1-1"/>
+<wire x1="-48.26" y1="44.45" x2="-48.26" y2="13.97" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="3V">
 <contactref element="U$1" pad="11"/>
 <contactref element="U$1" pad="16"/>
 <contactref element="U$1" pad="25"/>
-<wire x1="-15.24" y1="13.97" x2="-43.18" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.24" y1="36.83" x2="-15.24" y2="13.97" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$1">
-<contactref element="U$1" pad="1"/>
-<contactref element="U$3" pad="2"/>
-<wire x1="-43.18" y1="49.53" x2="-15.24" y2="97.79" width="0" layer="19" extent="1-1"/>
+<wire x1="-20.32" y1="11.43" x2="-48.26" y2="21.59" width="0" layer="19" extent="1-1"/>
+<wire x1="-20.32" y1="34.29" x2="-20.32" y2="11.43" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="SUPPLY" pad="2"/>
@@ -962,73 +910,77 @@ design rules under a new name.</description>
 </signal>
 <signal name="VCC">
 <contactref element="U$2" pad="OUT+"/>
-<contactref element="U$3" pad="1"/>
 <contactref element="U$1" pad="15"/>
 <contactref element="RTC" pad="2"/>
 <contactref element="LCD" pad="2"/>
 <contactref element="DATALOGGER" pad="2"/>
-<wire x1="-15.748" y1="83.566" x2="-15.24" y2="100.33" width="0" layer="19" extent="1-1"/>
-<wire x1="-49.51" y1="110.49" x2="-15.24" y2="100.33" width="0" layer="19" extent="1-1"/>
+<contactref element="PHOTOVOLTAIC" pad="1"/>
+<wire x1="-48.26" y1="11.43" x2="-74.83" y2="-7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.748" y1="83.566" x2="-48.26" y2="11.43" width="0" layer="19" extent="1-1"/>
+<wire x1="-49.51" y1="110.49" x2="-15.748" y2="83.566" width="0" layer="19" extent="1-1"/>
 <wire x1="-64.75" y1="110.49" x2="-49.51" y2="110.49" width="0" layer="19" extent="1-1"/>
 <wire x1="-58.36" y1="93.98" x2="-64.75" y2="110.49" width="0" layer="19" extent="1-1"/>
-<wire x1="-43.18" y1="13.97" x2="-15.748" y2="83.566" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PE">
 <contactref element="U$2" pad="OUT-"/>
-<contactref element="U$3" pad="3"/>
 <contactref element="U$1" pad="10"/>
 <contactref element="RTC" pad="1"/>
 <contactref element="LCD" pad="1"/>
 <contactref element="DATALOGGER" pad="1"/>
-<wire x1="-15.748" y1="66.294" x2="-15.24" y2="95.25" width="0" layer="19" extent="1-1"/>
-<wire x1="-52.01" y1="110.49" x2="-15.24" y2="95.25" width="0" layer="19" extent="1-1"/>
-<wire x1="-67.25" y1="110.49" x2="-52.01" y2="110.49" width="0" layer="19" extent="1-1"/>
-<wire x1="-60.86" y1="93.98" x2="-67.25" y2="110.49" width="0" layer="19" extent="1-1"/>
-<wire x1="-43.18" y1="26.67" x2="-15.748" y2="66.294" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$5">
-<contactref element="U$3" pad="P1.1"/>
-<contactref element="SOLAR_CELL" pad="2"/>
-<wire x1="-72.41" y1="92.71" x2="-40.64" y2="100.33" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$6">
-<contactref element="SOLAR_CELL" pad="1"/>
-<contactref element="U$3" pad="P1.2"/>
-<wire x1="-74.91" y1="92.71" x2="-40.64" y2="95.25" width="0" layer="19" extent="1-1"/>
+<contactref element="PHOTOVOLTAIC" pad="2"/>
+<wire x1="-48.26" y1="24.13" x2="-72.33" y2="-7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.748" y1="66.294" x2="-48.26" y2="24.13" width="0" layer="19" extent="1-1"/>
+<wire x1="-60.86" y1="93.98" x2="-15.748" y2="66.294" width="0" layer="19" extent="1-1"/>
+<wire x1="-67.25" y1="110.49" x2="-60.86" y2="93.98" width="0" layer="19" extent="1-1"/>
+<wire x1="-52.01" y1="110.49" x2="-67.25" y2="110.49" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SCL">
 <contactref element="U$1" pad="29"/>
 <contactref element="RTC" pad="4"/>
 <contactref element="LCD" pad="4"/>
+<contactref element="PHOTOVOLTAIC" pad="3"/>
+<wire x1="-20.32" y1="44.45" x2="-69.83" y2="-7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="-44.51" y1="110.49" x2="-20.32" y2="44.45" width="0" layer="19" extent="1-1"/>
 <wire x1="-59.75" y1="110.49" x2="-44.51" y2="110.49" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.24" y1="46.99" x2="-44.51" y2="110.49" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SDA">
 <contactref element="U$1" pad="28"/>
 <contactref element="RTC" pad="3"/>
 <contactref element="LCD" pad="3"/>
+<contactref element="PHOTOVOLTAIC" pad="4"/>
+<wire x1="-20.32" y1="41.91" x2="-67.33" y2="-7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="-47.01" y1="110.49" x2="-20.32" y2="41.91" width="0" layer="19" extent="1-1"/>
 <wire x1="-62.25" y1="110.49" x2="-47.01" y2="110.49" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.24" y1="44.45" x2="-47.01" y2="110.49" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CS">
 <contactref element="DATALOGGER" pad="6"/>
 <contactref element="U$1" pad="7"/>
-<wire x1="-43.18" y1="34.29" x2="-48.36" y2="93.98" width="0" layer="19" extent="1-1"/>
+<wire x1="-48.26" y1="31.75" x2="-48.36" y2="93.98" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SCK">
 <contactref element="DATALOGGER" pad="5"/>
 <contactref element="U$1" pad="9"/>
-<wire x1="-43.18" y1="29.21" x2="-50.86" y2="93.98" width="0" layer="19" extent="1-1"/>
+<wire x1="-48.26" y1="26.67" x2="-50.86" y2="93.98" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MOSI">
 <contactref element="DATALOGGER" pad="4"/>
 <contactref element="U$1" pad="6"/>
-<wire x1="-43.18" y1="36.83" x2="-53.36" y2="93.98" width="0" layer="19" extent="1-1"/>
+<wire x1="-48.26" y1="34.29" x2="-53.36" y2="93.98" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MISO">
 <contactref element="DATALOGGER" pad="3"/>
 <contactref element="U$1" pad="8"/>
-<wire x1="-43.18" y1="31.75" x2="-55.86" y2="93.98" width="0" layer="19" extent="1-1"/>
+<wire x1="-48.26" y1="29.21" x2="-55.86" y2="93.98" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$1">
+<contactref element="PHOTOVOLTAIC" pad="6"/>
+<contactref element="SOLAR_CELL" pad="1"/>
+<wire x1="-74.91" y1="92.71" x2="-62.33" y2="-7.62" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$5">
+<contactref element="PHOTOVOLTAIC" pad="5"/>
+<contactref element="SOLAR_CELL" pad="2"/>
+<wire x1="-72.41" y1="92.71" x2="-64.83" y2="-7.62" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

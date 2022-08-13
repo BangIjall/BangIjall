@@ -1,29 +1,23 @@
-#include <ESP8266WiFi.h>
-#include <ThingerESP8266.h>
-#include <Wire.h>
-//#include <QMC5883LCompass.h>
+//pustaka 
+#include <ESP8266WiFi.h>     //pustaka untuk WiFi                        
+#include <ThingerESP8266.h>  //pustaka web yang akan digunakan                       
+#include <Wire.h>            //pustaka untuk komunikasi I2C 
 
-//QMC5883LCompass compass;
 
-#define enA 12
-#define enB 14
-#define USERNAME "BangIjal" //Username thinger.io
-#define DEVICE_ID "NodeMCU"
-#define DEVICE_CREDENTIAL "ifIXPDbC%bH31yNO"
-
-#define SSID "OPPO A3s" //Hotspot yang kita pakai
-#define SSID_PASSWORD "modal dikit dong"
-
-#define SDA_PIN 4
-#define SCL_PIN 5
+#define SDA_PIN 4                             //pin SDA pada D2
+#define SCL_PIN 5                             //pin SCL pada D1
+#define enA     12                            //pin D6 pada enable A
+#define enB     14                            //pin D5 pada enable B
+#define USERNAME "BangIjal"                   //Username pada akun web
+#define DEVICE_ID "NodeMCU"                   //device yg digunakan
+#define DEVICE_CREDENTIAL "ifIXPDbC%bH31yNO"  //API key
+#define SSID "OPPO A3s"                       //Hotspot yang kita pakai
+#define SSID_PASSWORD "modal dikit dong"      //password hotspot yg dipakai
 
 ThingerESP8266 thing(USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
 
-const int16_t I2C_MASTER = 0x42;
-const int16_t I2C_SLAVE = 0x08;
 byte _ADDR = 0x0D;
 int _vRaw[3] = {0,0,0};
-int _get(int index);
 
 int pulsa = 0;
 float rps, rpm;
@@ -36,9 +30,8 @@ int dir, A;
 float spd;
 void setup() {
   Serial.begin(9600);
-  //compass.init();
   
-  Wire.begin(SDA_PIN, SCL_PIN);        // join i2c bus (address optional for master)
+  Wire.begin(SDA_PIN, SCL_PIN);       
   _writeReg(0x0B,0x01);
   _setMode(0x01,0x0C,0x10,0X00);
 
@@ -60,24 +53,11 @@ void loop() {
 
   waktusekarang = millis();
   if ((waktusekarang - waktulama) >= interval) {
-    //compass.read();
     baca();
 
     A = getAzimuth();
-    Serial.print("A: ");
-    Serial.print(dir);
-    Serial.println();
     rps = (jumlahPulsa / 100.00);
-    // rpm = (jumlahPulsa/360.00)/0.00833333;
-    rpm = (rps * 60); //*0.02789734276387736;
-    Serial.print("Banyaknya Pulsa: ");
-    Serial.print(jumlahPulsa);
-    Serial.print("t");
-    Serial.print("Rotasi Per Detik :");
-    Serial.print(rps);
-    Serial.print("t");
-    Serial.print("Rotasi Per Menit :");
-    Serial.println(rpm);
+    rpm = (rps * 60)*0.02789734276387736;
     pulsa = 0;
     jumlahPulsa = 0;
     waktulama = waktusekarang;

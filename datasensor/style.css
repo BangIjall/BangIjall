@@ -1,0 +1,172 @@
+#judul1{
+
+    font-size: 30px;
+
+    margin-bottom: 20px;
+
+    padding-top: 60px;
+
+}
+
+#judul2{
+
+    font-size: 30px;
+
+    padding: 10px;
+
+    margin-bottom: 20px;
+
+    padding-top: 60px;
+
+}
+
+#judul3{
+
+    font-size: 30px;
+
+    padding-top: 50px;
+
+}
+
+#cahaya{
+
+    background-color: pink;
+
+    padding: 5px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    width: 250px;
+
+    height: 150px;
+
+    margin: 10px;
+
+    
+
+}
+
+#cahaya1{
+
+    background-color: white;
+
+    padding: 5px;
+
+    padding-top: 10px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    width: 230px;
+
+    height: 130px;
+
+    margin: 5px;
+
+    font-size: 30px;
+
+}
+
+#temperatur{
+
+    background-color: pink;
+
+    padding: 5px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    width: 250px;
+
+    height: 150px;
+
+    margin: 10px;
+
+}
+
+ #temp1{
+
+    background-color: white;
+
+    padding: 5px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    width: 230px;
+
+    height: 130px;
+
+    margin: 5px;
+
+    font-size: 30px;
+
+}
+
+#kelembapan{
+
+    background-color: pink;
+
+    padding: 5px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    width: 250px;
+
+    height: 150px;
+
+    margin: 10px;
+
+}
+
+#kelembapan1{
+
+    background-color: white;
+
+    padding: 5px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    width: 230px;
+
+    height: 130px;
+
+    margin: 5px;
+
+    font-size: 30px;
+
+}
+
+#myChart{
+
+    text-align: left;
+
+}
+
+#myChart1{
+
+    text-align: right;
+
+}
+
+footer {
+
+    text-align: center;
+
+    padding: 3px;
+
+    background-color: pink;
+
+    color: black;
+
+  }
+

@@ -599,53 +599,6 @@ Comments, suggestions and bug reports please send to: &lt;b&gt;&lt;a href="mailt
 <wire x1="-19.685" y1="6.985" x2="-19.685" y2="5.715" width="0.254" layer="21"/>
 <wire x1="-20.32" y1="6.35" x2="-19.05" y2="6.35" width="0.254" layer="21"/>
 </package>
-<package name="CURRENT-SENSOR-ACS712#IC">
-<description>&lt;b&gt;Isolated Bipolar Current Sensors&lt;/b&gt; based on &lt;b&gt;ACS712&lt;/b&gt; chip&lt;br&gt;
-Footprint with input connector</description>
-<wire x1="-15.748" y1="6.604" x2="15.748" y2="6.604" width="0.127" layer="21"/>
-<wire x1="15.748" y1="6.604" x2="15.748" y2="-6.604" width="0.127" layer="21"/>
-<wire x1="15.748" y1="-6.604" x2="-15.748" y2="-6.604" width="0.127" layer="21"/>
-<wire x1="-15.748" y1="-6.604" x2="-15.748" y2="6.604" width="0.127" layer="21"/>
-<pad name="1" x="13.97" y="2.54" drill="1" shape="square"/>
-<pad name="2" x="13.97" y="0" drill="1"/>
-<pad name="3" x="13.97" y="-2.54" drill="1"/>
-<wire x1="12.7" y1="3.175" x2="13.335" y2="3.81" width="0.127" layer="21"/>
-<wire x1="13.335" y1="3.81" x2="14.605" y2="3.81" width="0.127" layer="21"/>
-<wire x1="14.605" y1="3.81" x2="15.24" y2="3.175" width="0.127" layer="21"/>
-<wire x1="15.24" y1="3.175" x2="15.24" y2="1.905" width="0.127" layer="21"/>
-<wire x1="15.24" y1="1.905" x2="14.605" y2="1.27" width="0.127" layer="21"/>
-<wire x1="14.605" y1="1.27" x2="15.24" y2="0.635" width="0.127" layer="21"/>
-<wire x1="15.24" y1="0.635" x2="15.24" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="15.24" y1="-0.635" x2="14.605" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="14.605" y1="-1.27" x2="15.24" y2="-1.905" width="0.127" layer="21"/>
-<wire x1="15.24" y1="-1.905" x2="15.24" y2="-3.175" width="0.127" layer="21"/>
-<wire x1="15.24" y1="-3.175" x2="14.605" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="14.605" y1="-3.81" x2="13.335" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="13.335" y1="-3.81" x2="12.7" y2="-3.175" width="0.127" layer="21"/>
-<wire x1="12.7" y1="-3.175" x2="12.7" y2="-1.905" width="0.127" layer="21"/>
-<wire x1="12.7" y1="-1.905" x2="13.335" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="13.335" y1="-1.27" x2="12.7" y2="-0.635" width="0.127" layer="21"/>
-<wire x1="12.7" y1="-0.635" x2="12.7" y2="0.635" width="0.127" layer="21"/>
-<wire x1="12.7" y1="0.635" x2="13.335" y2="1.27" width="0.127" layer="21"/>
-<wire x1="13.335" y1="1.27" x2="12.7" y2="1.905" width="0.127" layer="21"/>
-<wire x1="12.7" y1="1.905" x2="12.7" y2="3.175" width="0.127" layer="21"/>
-<wire x1="-14.605" y1="5.08" x2="-8.255" y2="5.08" width="0.127" layer="21"/>
-<wire x1="-8.255" y1="5.08" x2="-6.985" y2="5.08" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="5.08" x2="-6.985" y2="0" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="0" x2="-6.985" y2="-5.08" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="-5.08" x2="-8.255" y2="-5.08" width="0.127" layer="21"/>
-<wire x1="-8.255" y1="-5.08" x2="-14.605" y2="-5.08" width="0.127" layer="21"/>
-<wire x1="-14.605" y1="-5.08" x2="-14.605" y2="0" width="0.127" layer="21"/>
-<pad name="P1.1" x="-11.43" y="2.54" drill="1.2" diameter="2.5" shape="square"/>
-<pad name="P1.2" x="-11.43" y="-2.54" drill="1.2" diameter="2.5"/>
-<wire x1="-14.605" y1="0" x2="-14.605" y2="5.08" width="0.127" layer="21"/>
-<wire x1="-6.985" y1="0" x2="-14.605" y2="0" width="0.127" layer="21"/>
-<wire x1="-8.255" y1="5.08" x2="-8.255" y2="-5.08" width="0.127" layer="21"/>
-<circle x="-7.62" y="2.54" radius="0.381" width="0.127" layer="21"/>
-<circle x="-7.62" y="-2.54" radius="0.381" width="0.127" layer="21"/>
-<text x="0" y="7.62" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-7.62" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
-</package>
 </packages>
 <symbols>
 <symbol name="DC-DC-STEP-DOWN-LM2596">
@@ -660,21 +613,6 @@ Footprint with input connector</description>
 <wire x1="-12.7" y1="-10.16" x2="-12.7" y2="10.16" width="0.254" layer="94"/>
 <text x="-12.7" y="15.24" size="1.778" layer="95">&gt;NAME</text>
 <text x="-12.7" y="12.7" size="1.778" layer="96">&gt;VALUE</text>
-</symbol>
-<symbol name="CURRENT-SENSOR-ACS712#IC">
-<description>&lt;b&gt;Isolated Bipolar Current Sensors&lt;/b&gt; based on &lt;b&gt;ACS712&lt;/b&gt; chip&lt;br&gt;
-Symbol with input pads</description>
-<wire x1="-12.7" y1="7.62" x2="-12.7" y2="-7.62" width="0.254" layer="94"/>
-<pin name="VCC" x="17.78" y="2.54" length="middle" direction="pwr" rot="R180"/>
-<pin name="OUT" x="17.78" y="0" length="middle" direction="out" rot="R180"/>
-<pin name="GND" x="17.78" y="-2.54" length="middle" direction="pwr" rot="R180"/>
-<wire x1="-12.7" y1="7.62" x2="12.7" y2="7.62" width="0.254" layer="94"/>
-<wire x1="12.7" y1="7.62" x2="12.7" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="12.7" y1="-7.62" x2="-12.7" y2="-7.62" width="0.254" layer="94"/>
-<pin name="IN+" x="-17.78" y="2.54" length="middle"/>
-<pin name="IN-" x="-17.78" y="-2.54" length="middle"/>
-<text x="-12.7" y="12.7" size="1.778" layer="95">&gt;NAME</text>
-<text x="-12.7" y="10.16" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -694,34 +632,6 @@ Symbol with input pads</description>
 <connect gate="G$1" pin="IN-" pad="IN-"/>
 <connect gate="G$1" pin="OUT+" pad="OUT+"/>
 <connect gate="G$1" pin="OUT-" pad="OUT-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="CURRENT-SENSOR-ACS712#IC">
-<description>&lt;b&gt;Isolated Bipolar Current Sensors&lt;/b&gt; based on &lt;b&gt;ACS712&lt;/b&gt; chip&lt;br&gt;
-Symbol with input pins
-&lt;p&gt;More details available here:&lt;br&gt;
-&lt;a href="http://embedded-lab.com/blog/a-brief-overview-of-allegro-acs712-current-sensor-part-1/"&gt;
-http://embedded-lab.com/blog/a-brief-overview-of-allegro-acs712-current-sensor-part-1/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;&lt;a href="http://www.ebay.com/sch/acs712+module "&gt;Click here to find device on ebay.com&lt;/a&gt;&lt;/b&gt;&lt;br /&gt;
-&lt;b&gt;Note:&lt;/b&gt; There are many available versions with different pinout. Please check before use&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="photo" src="http://www.diymodules.org/img/device-photo.php?name=CURRENT-SENSOR-ACS712"&gt;&lt;/p&gt;</description>
-<gates>
-<gate name="G$1" symbol="CURRENT-SENSOR-ACS712#IC" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="CURRENT-SENSOR-ACS712#IC">
-<connects>
-<connect gate="G$1" pin="GND" pad="3"/>
-<connect gate="G$1" pin="IN+" pad="P1.1"/>
-<connect gate="G$1" pin="IN-" pad="P1.2"/>
-<connect gate="G$1" pin="OUT" pad="2"/>
-<connect gate="G$1" pin="VCC" pad="1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -1070,7 +980,6 @@ Würth 6880xxxxx22 series
 <part name="RTC" library="con-JST EH" deviceset="B4B-EH" device="-A"/>
 <part name="LCD" library="con-JST EH" deviceset="B4B-EH" device="-A"/>
 <part name="SUPPLY" library="con-JST EH" deviceset="B2B-EH" device="-A"/>
-<part name="U$3" library="diy-modules" deviceset="CURRENT-SENSOR-ACS712#IC" device=""/>
 <part name="SOLAR_CELL" library="con-JST EH" deviceset="B2B-EH" device="-A"/>
 <part name="SWITCH" library="con-JST EH" deviceset="B2B-EH" device="-A"/>
 <part name="P+1" library="supply1" deviceset="VCC" device=""/>
@@ -1086,6 +995,7 @@ Würth 6880xxxxx22 series
 <part name="DATALOGGER" library="con-JST EH" deviceset="B6B-EH" device="-A"/>
 <part name="P+6" library="supply1" deviceset="VCC" device=""/>
 <part name="PE6" library="supply1" deviceset="PE" device=""/>
+<part name="PHOTOVOLTAIC" library="con-JST EH" deviceset="B6B-EH" device="-A"/>
 </parts>
 <sheets>
 <sheet>
@@ -1097,11 +1007,10 @@ Würth 6880xxxxx22 series
 <instance part="RTC" gate="G$1" x="93.98" y="86.36"/>
 <instance part="LCD" gate="G$1" x="88.9" y="27.94"/>
 <instance part="SUPPLY" gate="G$1" x="-48.26" y="83.82"/>
-<instance part="U$3" gate="G$1" x="20.32" y="83.82"/>
-<instance part="SOLAR_CELL" gate="G$1" x="-17.78" y="86.36"/>
+<instance part="SOLAR_CELL" gate="G$1" x="-2.54" y="83.82"/>
 <instance part="SWITCH" gate="G$1" x="-48.26" y="66.04"/>
-<instance part="P+1" gate="VCC" x="40.64" y="99.06"/>
-<instance part="PE1" gate="M" x="40.64" y="76.2"/>
+<instance part="P+1" gate="VCC" x="-7.62" y="96.52"/>
+<instance part="PE1" gate="M" x="-7.62" y="88.9"/>
 <instance part="PE2" gate="M" x="114.3" y="20.32"/>
 <instance part="PE3" gate="M" x="116.84" y="78.74"/>
 <instance part="PE4" gate="M" x="40.64" y="43.18"/>
@@ -1113,19 +1022,11 @@ Würth 6880xxxxx22 series
 <instance part="DATALOGGER" gate="G$1" x="116.84" y="58.42"/>
 <instance part="P+6" gate="VCC" x="139.7" y="55.88"/>
 <instance part="PE6" gate="M" x="139.7" y="48.26"/>
+<instance part="PHOTOVOLTAIC" gate="G$1" x="30.48" y="86.36" rot="R180"/>
 </instances>
 <busses>
 </busses>
 <nets>
-<net name="N$1" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="A0"/>
-<wire x1="45.72" y1="71.12" x2="43.18" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="43.18" y1="71.12" x2="43.18" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="OUT"/>
-<wire x1="43.18" y1="83.82" x2="38.1" y2="83.82" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="SUPPLY" gate="G$1" pin="2"/>
@@ -1161,12 +1062,6 @@ Würth 6880xxxxx22 series
 <wire x1="17.78" y1="63.5" x2="17.78" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$3" gate="G$1" pin="VCC"/>
-<pinref part="P+1" gate="VCC" pin="VCC"/>
-<wire x1="38.1" y1="86.36" x2="40.64" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="86.36" x2="40.64" y2="96.52" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="U$1" gate="G$1" pin="VIN"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
 <wire x1="45.72" y1="35.56" x2="33.02" y2="35.56" width="0.1524" layer="91"/>
@@ -1187,6 +1082,11 @@ Würth 6880xxxxx22 series
 <pinref part="P+6" gate="VCC" pin="VCC"/>
 <wire x1="139.7" y1="53.34" x2="124.46" y2="53.34" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="PHOTOVOLTAIC" gate="G$1" pin="1"/>
+<pinref part="P+1" gate="VCC" pin="VCC"/>
+<wire x1="-7.62" y1="93.98" x2="22.86" y2="93.98" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="PE" class="0">
 <segment>
@@ -1194,12 +1094,6 @@ Würth 6880xxxxx22 series
 <pinref part="PE5" gate="M" pin="PE"/>
 <wire x1="10.16" y1="53.34" x2="17.78" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="17.78" y1="53.34" x2="17.78" y2="48.26" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="PE1" gate="M" pin="PE"/>
-<wire x1="40.64" y1="78.74" x2="40.64" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="GND"/>
-<wire x1="40.64" y1="81.28" x2="38.1" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="GND@1"/>
@@ -1222,21 +1116,10 @@ Würth 6880xxxxx22 series
 <pinref part="PE6" gate="M" pin="PE"/>
 <wire x1="139.7" y1="50.8" x2="124.46" y2="50.8" width="0.1524" layer="91"/>
 </segment>
-</net>
-<net name="N$5" class="0">
 <segment>
-<pinref part="U$3" gate="G$1" pin="IN+"/>
-<pinref part="SOLAR_CELL" gate="G$1" pin="2"/>
-<wire x1="-10.16" y1="86.36" x2="2.54" y2="86.36" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="SOLAR_CELL" gate="G$1" pin="1"/>
-<wire x1="-10.16" y1="83.82" x2="-2.54" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="-2.54" y1="83.82" x2="-2.54" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="IN-"/>
-<wire x1="-2.54" y1="81.28" x2="2.54" y2="81.28" width="0.1524" layer="91"/>
+<pinref part="PHOTOVOLTAIC" gate="G$1" pin="2"/>
+<pinref part="PE1" gate="M" pin="PE"/>
+<wire x1="-7.62" y1="91.44" x2="22.86" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -1255,6 +1138,11 @@ Würth 6880xxxxx22 series
 <pinref part="LCD" gate="G$1" pin="4"/>
 <wire x1="99.06" y1="30.48" x2="96.52" y2="30.48" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="PHOTOVOLTAIC" gate="G$1" pin="3"/>
+<wire x1="22.86" y1="88.9" x2="20.32" y2="88.9" width="0.1524" layer="91"/>
+<label x="20.32" y="88.9" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="SDA" class="0">
 <segment>
@@ -1271,6 +1159,11 @@ Würth 6880xxxxx22 series
 <label x="99.06" y="27.94" size="1.4224" layer="95" xref="yes"/>
 <pinref part="LCD" gate="G$1" pin="3"/>
 <wire x1="96.52" y1="27.94" x2="99.06" y2="27.94" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="PHOTOVOLTAIC" gate="G$1" pin="4"/>
+<wire x1="22.86" y1="86.36" x2="20.32" y2="86.36" width="0.1524" layer="91"/>
+<label x="20.32" y="86.36" size="1.4224" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="CS" class="0">
@@ -1319,6 +1212,20 @@ Würth 6880xxxxx22 series
 <pinref part="U$1" gate="G$1" pin="S0"/>
 <wire x1="45.72" y1="53.34" x2="43.18" y2="53.34" width="0.1524" layer="91"/>
 <label x="43.18" y="53.34" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="PHOTOVOLTAIC" gate="G$1" pin="6"/>
+<pinref part="SOLAR_CELL" gate="G$1" pin="1"/>
+<wire x1="5.08" y1="81.28" x2="22.86" y2="81.28" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="PHOTOVOLTAIC" gate="G$1" pin="5"/>
+<pinref part="SOLAR_CELL" gate="G$1" pin="2"/>
+<wire x1="5.08" y1="83.82" x2="22.86" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
